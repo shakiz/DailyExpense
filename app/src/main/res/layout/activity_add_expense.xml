@@ -1,75 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:id="@+id/mainExpenseRelativeLayoutXML"
     tools:context=".AddExpense">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/editetext_shape"
-        android:hint="Enter expense title"
-        android:id="@+id/expenseTitleXML"/>
 
-    <EditText
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/editetext_shape"
-        android:hint="Enter expense description"
-        android:id="@+id/expenseDescriptionTitleXML"/>
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pick a date"
-        android:padding="5dp"
-        android:layout_margin="5dp"
-        android:textSize="18sp"
-        android:id="@+id/pickADateXMl"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Enter amount"
-            android:inputType="number"
-            android:background="@drawable/editetext_shape"
-            android:id="@+id/amountXML"
-            android:padding="5dp"
-            android:layout_margin="5dp"/>
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:layout_margin="5dp"
-            android:id="@+id/spinnerCurrencyXML"></Spinner>
+            android:layout_margin="20dp"
+            android:elevation="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardUseCompatPadding="true"
+            app:cardPreventCornerOverlap="false">
 
-    </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Add"
-        android:textAllCaps="false"
-        android:id="@+id/addNewExpenseButtonXMl"
-        android:padding="5dp"
-        android:textColor="@android:color/white"
-        android:layout_margin="5dp"
-        android:background="@drawable/buttons_shape"
-        android:textSize="18sp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/editetext_shape"
+                    android:hint="Enter expense title"
+                    android:id="@+id/expenseTitleXML"/>
 
-</LinearLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/expenseTitleXML"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/editetext_shape"
+                    android:hint="Enter expense description"
+                    android:id="@+id/expenseDescriptionTitleXML"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pick a date"
+                    android:layout_below="@id/expenseDescriptionTitleXML"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:textSize="18sp"
+                    android:id="@+id/pickADateXMl"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Enter amount"
+                    android:layout_below="@+id/pickADateXMl"
+                    android:inputType="number"
+                    android:background="@drawable/editetext_shape"
+                    android:id="@+id/amountXML"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"/>
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/amountXML"
+                    android:padding="5dp"
+                    android:textDirection="inherit"
+                    android:prompt="@string/spinner_title_currency"
+                    android:layout_margin="5dp"
+                    android:id="@+id/spinnerCurrencyXML"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/spinnerCurrencyXML"
+                    android:layout_centerHorizontal="true"
+                    android:text="Add"
+                    android:textAllCaps="false"
+                    android:id="@+id/addNewExpenseButtonXMl"
+                    android:padding="5dp"
+                    android:textColor="@android:color/white"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/buttons_shape"
+                    android:textSize="18sp"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </ScrollView>
+
+
+</RelativeLayout>
