@@ -12,10 +12,10 @@ import app.shakil.com.dailyexpense.Models.ExpenseModel;
 
 public class SaveDailyExpense extends SQLiteOpenHelper {
     // Database Version
-    private static final int DATABASE_VERSION = 007;
+    private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "SaveDailyExpense.db";
+    private static final String DATABASE_NAME = "SaveDExpense.db";
 
     // User table name
     private static final String TABLE_SAVE_EXPENSE = "saveexpense";
@@ -87,6 +87,31 @@ public class SaveDailyExpense extends SQLiteOpenHelper {
         // delete user record by id
         db.delete(TABLE_SAVE_EXPENSE,null,null);
         db.close();
+    }
+
+    /**
+     * This method is to get a single expense row record
+     */
+    public ArrayList<ExpenseModel> getSingleExpenseDetails(String title){
+        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+        String query = "select * from " + TABLE_SAVE_EXPENSE + " where "+ COLUMN_EXPENSE_TITLE + " = '" + title + "'";
+        Cursor cursor=sqLiteDatabase.rawQuery(query, null);
+        ArrayList<ExpenseModel> expenseModelArrayList=new ArrayList<>();
+        if (cursor.moveToFirst()){
+            do {
+                ExpenseModel expenseModel=new ExpenseModel();
+                expenseModel.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_TITLE)));
+                expenseModel.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_DESCRIPTION)));
+                expenseModel.setAmount(cursor.getInt(cursor.getColumnIndex(COLUMN_EXPENSE_AMOUNT)));
+                expenseModel.setDate(cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_DATE)));
+                expenseModel.setCurrency(cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_CURRENCY)));
+                Log.v("Info : ",""+cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_TITLE)));
+                expenseModelArrayList.add(expenseModel);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+        return expenseModelArrayList;
     }
 
     /**
