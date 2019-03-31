@@ -1,4 +1,4 @@
-package app.shakil.com.dailyexpense;
+package app.shakil.com.dailyexpense.Models;
 
 public class ExpenseModel {
     private int id;

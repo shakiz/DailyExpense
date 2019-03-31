@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import java.util.ArrayList;
 
+import app.shakil.com.dailyexpense.Models.ExpenseModel;
+
 public class SaveDailyExpense extends SQLiteOpenHelper {
     // Database Version
     private static final int DATABASE_VERSION = 007;
@@ -183,6 +185,38 @@ public class SaveDailyExpense extends SQLiteOpenHelper {
         db.close();
         // return user list
         return expenseList;
+    }
+    /**
+     * This method is to fetch only the expense name and return the list of expense name list records
+     *
+     * @return list of string which is the expense title
+     */
+    public ArrayList<String> getExpenseDate() {
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_EXPENSE_DATE,
+        };
+        ArrayList<String> expenseDateList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        // query the user table
+        Cursor cursor = db.query(TABLE_SAVE_EXPENSE, //Table to query
+                columns,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                null); //The sort order
+        // Traversing through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                // Adding user record to list
+                expenseDateList.add(cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_DATE)));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        // return user list
+        return expenseDateList;
     }
 }
 

@@ -1,4 +1,4 @@
-package app.shakil.com.dailyexpense;
+package app.shakil.com.dailyexpense.Activities;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -15,11 +15,16 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
+
+import app.shakil.com.dailyexpense.Models.ExpenseModel;
+import app.shakil.com.dailyexpense.R;
+import app.shakil.com.dailyexpense.SaveDailyExpense;
 
 public class AddExpense extends AppCompatActivity {
 
@@ -91,7 +96,7 @@ public class AddExpense extends AppCompatActivity {
                     }
                     else{
                         if (amount.getText().toString().isEmpty()){
-                            amount.setError("Plase insert amount.");
+                            amount.setError("Please insert amount.");
                         }
                         else{
                             titleStr=title.getText().toString();
@@ -99,8 +104,8 @@ public class AddExpense extends AppCompatActivity {
                             amountInt=Integer.parseInt(amount.getText().toString());
                             expenseModel=new ExpenseModel(titleStr,descriptionStr,dateStr,amountInt,currencyStr);
                             saveDailyExpense.addNewExpense(expenseModel);
-                            Snackbar.make(relativeLayout,"Added the expense.",Snackbar.LENGTH_LONG).show();
-                            startActivity(new Intent(AddExpense.this,MainActivity.class));
+                            Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(AddExpense.this, MainActivity.class));
                         }
                     }
                 }
