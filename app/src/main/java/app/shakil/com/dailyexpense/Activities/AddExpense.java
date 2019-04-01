@@ -76,7 +76,6 @@ public class AddExpense extends AppCompatActivity {
                         }
                         catch (Exception e){
                             Log.v("DATE ERROR : ",""+e.getMessage());
-
                         }
                     }
 
@@ -92,20 +91,28 @@ public class AddExpense extends AppCompatActivity {
                 }
                 else{
                     if (description.getText().toString().isEmpty()){
-                        description.setError("Please insert description");
+                        showToastMessage("Please insert description");
                     }
                     else{
                         if (amount.getText().toString().isEmpty()){
-                            amount.setError("Please insert amount.");
+                            showToastMessage("Please insert amount.");
                         }
                         else{
                             titleStr=title.getText().toString();
                             descriptionStr=description.getText().toString();
                             amountInt=Integer.parseInt(amount.getText().toString());
-                            expenseModel=new ExpenseModel(titleStr,descriptionStr,dateStr,amountInt,currencyStr);
-                            saveDailyExpense.addNewExpense(expenseModel);
-                            Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(AddExpense.this, DashboardActivity.class));
+                            if (titleStr.contains("'") || descriptionStr.contains("'")){
+                                showToastMessage("Please avoid unusual characters.");
+                            }
+                            else if(titleStr.contains("'") && descriptionStr.contains("'")){
+                                showToastMessage("Please avoid unusual characters.");
+                            }
+                            else{
+                                expenseModel=new ExpenseModel(titleStr,descriptionStr,dateStr,amountInt,currencyStr);
+                                saveDailyExpense.addNewExpense(expenseModel);
+                                showToastMessage("Added successfully");
+                                startActivity(new Intent(AddExpense.this, DashboardActivity.class));
+                            }
                         }
                     }
                 }
@@ -127,5 +134,9 @@ public class AddExpense extends AppCompatActivity {
         currencyArrayList.add("Select currency");
         currencyArrayList.add("Taka");
         currencyArrayList.add("USD");
+    }
+
+    public void showToastMessage(String message){
+        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
     }
 }
