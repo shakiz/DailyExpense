@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="textViewBack">#6F6464</color>
     <color name="textColorWhite">#ffffff</color>
+    <color name="fab_tint_color">#009688</color>
 </resources>

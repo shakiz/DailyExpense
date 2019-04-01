@@ -1,52 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Activities.ItemDetails">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Title"
-        android:textSize="18sp"
-        android:padding="5dp"
-        android:layout_margin="5dp"
-        android:id="@+id/title"/>
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/layout_expense_details_shape">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Description"
-        android:textSize="18sp"
-        android:padding="5dp"
-        android:layout_margin="5dp"
-        android:id="@+id/description"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Date"
-        android:textSize="18sp"
-        android:padding="5dp"
-        android:layout_margin="5dp"
-        android:id="@+id/date"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Amount"
-        android:textSize="18sp"
-        android:padding="5dp"
-        android:layout_margin="5dp"
-        android:id="@+id/amount"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Currency"
-        android:textSize="18sp"
-        android:padding="5dp"
-        android:layout_margin="5dp"
-        android:id="@+id/currency"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:id="@+id/title"/>
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:layout_below="@id/title"
+            android:textSize="18sp"
+            android:padding="8dp"
+            android:layout_margin="5dp"
+            android:id="@+id/description"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:gravity="center_horizontal"
+            android:layout_below="@id/description"
+            android:padding="8dp"
+            android:layout_margin="5dp"
+            android:id="@+id/date"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Amount"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:textSize="18sp"
+            android:layout_below="@id/date"
+            android:padding="8dp"
+            android:layout_margin="5dp"
+            android:id="@+id/amount"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:text="Currency"
+            android:textSize="18sp"
+            android:layout_below="@id/amount"
+            android:padding="8dp"
+            android:layout_margin="5dp"
+            android:id="@+id/currency"/>
+
+    </RelativeLayout>
+
+</ScrollView>

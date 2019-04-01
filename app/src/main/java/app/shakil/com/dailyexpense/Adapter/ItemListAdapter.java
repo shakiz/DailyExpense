@@ -20,7 +20,7 @@ import app.shakil.com.dailyexpense.SaveDailyExpense;
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder>{
     private ArrayList<String> stringArrayListTitle;
     private ArrayList<String> stringArrayListDate;
-    private ArrayList<ExpenseModel> expenseModelArrayList;
+    private ExpenseModel expenseModel;
     private Context context;
     private SaveDailyExpense saveDailyExpense;
 
@@ -46,19 +46,18 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         viewHolder.titleTXT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                expenseModelArrayList=saveDailyExpense.getSingleExpenseDetails(stringArrayListTitle.get(position));
+                expenseModel=saveDailyExpense.getSingleExpenseDetails(stringArrayListTitle.get(position));
                 try{
-                    Log.v("Size : ",""+saveDailyExpense.getSingleExpenseDetails(stringArrayListTitle.get(position)).size());
-                    Log.v("INFO : ",""+expenseModelArrayList.get(position).getDescription());
+                    Log.v("INFO : ",""+expenseModel.getDescription());
                 }
                 catch (Exception e){
                     Log.v("ERROR : ",""+e.getMessage());
                 }
-                context.startActivity(new Intent(context, ItemDetails.class).putExtra("title",expenseModelArrayList.get(position).getTitle())
-                                                                            .putExtra("description",expenseModelArrayList.get(position).getDescription())
-                                                                            .putExtra("date",expenseModelArrayList.get(position).getDate())
-                                                                            .putExtra("amount",expenseModelArrayList.get(position).getAmount())
-                                                                            .putExtra("currency",expenseModelArrayList.get(position).getCurrency())
+                context.startActivity(new Intent(context, ItemDetails.class).putExtra("title",expenseModel.getTitle())
+                                                                            .putExtra("description",expenseModel.getDescription())
+                                                                            .putExtra("date",expenseModel.getDate())
+                                                                            .putExtra("amount",expenseModel.getAmount())
+                                                                            .putExtra("currency",expenseModel.getCurrency())
                 );
             }
         });

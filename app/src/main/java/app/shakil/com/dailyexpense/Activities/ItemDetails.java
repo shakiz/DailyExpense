@@ -18,19 +18,9 @@ public class ItemDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details);
-        init(); 
-        Intent getIntent=getIntent();
-        dateStr=getIntent.getStringExtra("date");
-        titleStr=getIntent.getStringExtra("title");
-        descriptionStr=getIntent.getStringExtra("description");
-        currencyStr=getIntent.getStringExtra("currency");
-        amountInt=getIntent.getIntExtra("amount",0);
-
-        titleTXT.setText(""+titleStr);
-        descriptionTXT.setText(""+descriptionStr);
-        dateTXT.setText(""+dateStr);
-        amountTXT.setText(""+amountInt);
-        currencyTXT.setText(""+currencyStr);
+        init();
+        getIntentData();
+        setTextViewResources();
     }
 
     public void init(){
@@ -39,5 +29,20 @@ public class ItemDetails extends AppCompatActivity {
         dateTXT=findViewById(R.id.date);
         amountTXT=findViewById(R.id.amount);
         currencyTXT=findViewById(R.id.currency);
+    }
+    public void getIntentData(){
+        Intent getIntent=getIntent();
+        dateStr=getIntent.getStringExtra("date");
+        titleStr=getIntent.getStringExtra("title");
+        descriptionStr=getIntent.getStringExtra("description");
+        currencyStr=getIntent.getStringExtra("currency");
+        amountInt=getIntent.getIntExtra("amount",0);
+    }
+    public void setTextViewResources(){
+        titleTXT.setText("Title : "+titleStr);
+        descriptionTXT.setText("Description : "+descriptionStr);
+        dateTXT.setText("Date : "+dateStr);
+        amountTXT.setText("Amount : "+amountInt);
+        currencyTXT.setText("Currency : "+currencyStr);
     }
 }

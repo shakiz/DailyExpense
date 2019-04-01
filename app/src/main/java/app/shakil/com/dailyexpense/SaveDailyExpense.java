@@ -92,26 +92,26 @@ public class SaveDailyExpense extends SQLiteOpenHelper {
     /**
      * This method is to get a single expense row record
      */
-    public ArrayList<ExpenseModel> getSingleExpenseDetails(String title){
+    public ExpenseModel getSingleExpenseDetails(String title){
         SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
         String query = "select * from " + TABLE_SAVE_EXPENSE + " where "+ COLUMN_EXPENSE_TITLE + " = '" + title + "'";
         Cursor cursor=sqLiteDatabase.rawQuery(query, null);
-        ArrayList<ExpenseModel> expenseModelArrayList=new ArrayList<>();
+        ExpenseModel expenseModel=new ExpenseModel();
+        Log.v("Title : ",""+title);
         if (cursor.moveToFirst()){
             do {
-                ExpenseModel expenseModel=new ExpenseModel();
                 expenseModel.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_TITLE)));
                 expenseModel.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_DESCRIPTION)));
                 expenseModel.setAmount(cursor.getInt(cursor.getColumnIndex(COLUMN_EXPENSE_AMOUNT)));
                 expenseModel.setDate(cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_DATE)));
                 expenseModel.setCurrency(cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_CURRENCY)));
                 Log.v("Info : ",""+cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_TITLE)));
-                expenseModelArrayList.add(expenseModel);
+
             }while (cursor.moveToNext());
         }
         cursor.close();
         sqLiteDatabase.close();
-        return expenseModelArrayList;
+        return expenseModel;
     }
 
     /**

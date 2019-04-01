@@ -105,7 +105,7 @@ public class AddExpense extends AppCompatActivity {
                             expenseModel=new ExpenseModel(titleStr,descriptionStr,dateStr,amountInt,currencyStr);
                             saveDailyExpense.addNewExpense(expenseModel);
                             Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(AddExpense.this, MainActivity.class));
+                            startActivity(new Intent(AddExpense.this, DashboardActivity.class));
                         }
                     }
                 }
