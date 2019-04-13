@@ -115,6 +115,30 @@ public class SaveDailyExpense extends SQLiteOpenHelper {
     }
 
     /**
+     * This method is to get a single expense row record
+     */
+    public ExpenseModel getSingleExpenseDetailsByDate(String date){
+        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+        String query = "select * from " + TABLE_SAVE_EXPENSE + " where "+ COLUMN_EXPENSE_DATE + "='" + date + "'";
+        Cursor cursor=sqLiteDatabase.rawQuery(query, null);
+        ExpenseModel expenseModel=new ExpenseModel();
+        //Log.v("Date : ",""+date);
+        if (cursor.moveToFirst()){
+            do {
+                expenseModel.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_TITLE)));
+                expenseModel.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_DESCRIPTION)));
+                expenseModel.setAmount(cursor.getInt(cursor.getColumnIndex(COLUMN_EXPENSE_AMOUNT)));
+                expenseModel.setDate(cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_DATE)));
+                expenseModel.setCurrency(cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_CURRENCY)));
+                Log.v("Info : ",""+cursor.getString(cursor.getColumnIndex(COLUMN_EXPENSE_TITLE)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+        return expenseModel;
+    }
+
+    /**
      * This method is to delete a single terms row record
      */
     public  void deleteSingleExpense(String name) {

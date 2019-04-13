@@ -2,7 +2,6 @@ package app.shakil.com.dailyexpense.Activities;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -111,7 +110,7 @@ public class AddExpense extends AppCompatActivity {
                                 expenseModel=new ExpenseModel(titleStr,descriptionStr,dateStr,amountInt,currencyStr);
                                 saveDailyExpense.addNewExpense(expenseModel);
                                 showToastMessage("Added successfully");
-                                startActivity(new Intent(AddExpense.this, DashboardActivity.class));
+                                startActivity(new Intent(AddExpense.this, DashboardOfExpenses.class));
                             }
                         }
                     }

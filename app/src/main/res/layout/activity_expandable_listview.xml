@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.DashboardActivity">
 
-    <android.support.v7.widget.RecyclerView
+    <ExpandableListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/recyclerViewItemXML"
-        android:padding="5dp"
-        android:layout_marginBottom="5dp"/>
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:id="@+id/expandableListviewXml"/>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabAddNewExpense"
         android:layout_width="wrap_content"
