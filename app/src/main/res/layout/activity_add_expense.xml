@@ -72,8 +72,6 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/amountXML"
                     android:padding="5dp"
-                    android:textDirection="inherit"
-                    android:prompt="@string/spinner_title_currency"
                     android:layout_margin="5dp"
                     android:id="@+id/spinnerCurrencyXML"/>
 

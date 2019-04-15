@@ -26,7 +26,6 @@ import app.shakil.com.dailyexpense.R;
 import app.shakil.com.dailyexpense.SaveDailyExpense;
 
 public class AddExpense extends AppCompatActivity {
-
     private EditText title,description,amount;
     private TextView dateTextView;
     private Button addButton;
@@ -44,10 +43,12 @@ public class AddExpense extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expense);
+        //This method will be used to initialize all the attributes with xml
         init();
+        //Setting the spinner adapter for currency
         currencyAdapter=new ArrayAdapter<>(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,currencyArrayList);
         currencySpinner.setAdapter(currencyAdapter);
-
+        //Setting the on item select listener fot currency spinner
         currencySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -59,6 +60,8 @@ public class AddExpense extends AppCompatActivity {
 
             }
         });
+        //This will pop up a date time picker dialog
+        //And from there user can select the date
         dateTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,6 +85,7 @@ public class AddExpense extends AppCompatActivity {
                 fromDatePickerDialog.show();
             }
         });
+        //Setting the add expense button click listener
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,7 +138,7 @@ public class AddExpense extends AppCompatActivity {
         currencyArrayList.add("Taka");
         currencyArrayList.add("USD");
     }
-
+    //This method will be used to show toast message
     public void showToastMessage(String message){
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
     }

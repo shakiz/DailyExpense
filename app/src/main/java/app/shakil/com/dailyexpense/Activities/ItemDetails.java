@@ -18,8 +18,11 @@ public class ItemDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details);
+        //This method will be used to initialize all the attributes with xml
         init();
+        //This method will be used to get all the intent data
         getIntentData();
+        //This method will be used to set all the intent data to their respective textviews
         setTextViewResources();
     }
 

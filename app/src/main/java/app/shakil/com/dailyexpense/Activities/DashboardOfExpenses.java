@@ -18,11 +18,12 @@ import app.shakil.com.dailyexpense.R;
 import app.shakil.com.dailyexpense.SaveDailyExpense;
 
 public class DashboardOfExpenses extends AppCompatActivity {
-    // more efficient than HashMap for mapping integers to objects
+    //SparseArray is much efficient than HashMap for mapping integers to objects
     private SparseArray<Group> groups = new SparseArray<Group>();
     private ArrayList<String> stringArrayListDate;
     private ArrayList<String> stringArrayListTitle;
     private ArrayList<String> sortedDateList;
+    private ArrayList<ExpenseModel> expenseModels;
     private FloatingActionButton addnewExpenseFloatingActionButton;
     private SaveDailyExpense saveDailyExpense;
     private HashSet<String> removedRepatedDataSet;
@@ -34,17 +35,18 @@ public class DashboardOfExpenses extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expandable_listview);
-
+        //This method will be used to initialize all the attributes with xml
         init();
-
+        //Adding the on click listener for floating action button
         addnewExpenseFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(DashboardOfExpenses.this,AddExpense.class));
             }
         });
-
+        //This will add the data for the both group and children in expandable listview
         createData();
+        //Initializing the adapter for expandable dashboard listview
         adapter = new MyExpandableListAdapter(this,
                 groups,stringArrayListTitle,stringArrayListDate,getApplicationContext());
         expandableListViewDashboard.setAdapter(adapter);
@@ -57,9 +59,11 @@ public class DashboardOfExpenses extends AppCompatActivity {
         }
         for (int start = 0; start < sortedDateList.size(); start++) {
             Group group = new Group(sortedDateList.get(start));
-            expenseModel=(saveDailyExpense.getSingleExpenseDetailsByDate(sortedDateList.get(start)));
+            expenseModels=(saveDailyExpense.getSingleExpenseDetailsByDate(sortedDateList.get(start)));
             try{
-                group.children.add("" + expenseModel.getTitle());
+                for(int count=0;count<expenseModels.size();count++){
+                    group.children.add("" + expenseModels.get(count).getTitle());
+                }
             }
             catch (Exception e){
                 Log.v("Errorror : ",""+e.getMessage());
@@ -72,6 +76,7 @@ public class DashboardOfExpenses extends AppCompatActivity {
         saveDailyExpense=new SaveDailyExpense(getApplicationContext());
         expandableListViewDashboard =  findViewById(R.id.expandableListviewXml);
         stringArrayListDate=new ArrayList<>();
+        expenseModels=new ArrayList<>();
         stringArrayListTitle=new ArrayList<>();
         sortedDateList=new ArrayList<>();
         removedRepatedDataSet=new HashSet<>();
