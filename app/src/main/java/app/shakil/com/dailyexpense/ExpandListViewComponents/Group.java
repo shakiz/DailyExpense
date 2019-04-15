@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Group {
-    public String string;
+    public String title;
     public final List<String> children=new ArrayList<String>();
 
-    public Group(String string){
-        this.string=string;
+    public Group(String title){
+        this.title=title;
     }
 }

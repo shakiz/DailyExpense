@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--<activity android:name=".Activities.DashboardOfExpenses"></activity>-->
+        <activity android:name=".Activities.ExpenseGraph"></activity>
         <activity android:name=".Activities.ItemDetails" />
         <activity android:name=".Activities.AddExpense" />
         <activity

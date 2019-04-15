@@ -113,6 +113,24 @@ public class SaveDailyExpense extends SQLiteOpenHelper {
         sqLiteDatabase.close();
         return expenseModel;
     }
+    /*
+        This method will be used to get the expense amount of a singular date
+    */
+    public ArrayList<Integer> getExpenseAmount(String date){
+        ArrayList<Integer> expenseArrayListInt=new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+        String query = "select "+COLUMN_EXPENSE_AMOUNT+" from " + TABLE_SAVE_EXPENSE + " where "+ COLUMN_EXPENSE_DATE + "='" + date + "'";
+        Cursor cursor=sqLiteDatabase.rawQuery(query,null);
+        if (cursor.moveToFirst()){
+            do {
+                expenseArrayListInt.add(cursor.getInt(cursor.getColumnIndex(COLUMN_EXPENSE_AMOUNT)));
+                Log.v("Amount : ",""+cursor.getInt(cursor.getColumnIndex(COLUMN_EXPENSE_AMOUNT)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+        return expenseArrayListInt;
+    }
 
     /**
      * This method is to get a single expense row record
